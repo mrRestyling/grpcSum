@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"myGRPC/interanal/adder"
+	"myGRPC/internal/adder"
 	"myGRPC/proto/createdProto"
 	"net"
 
