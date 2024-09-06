@@ -8,6 +8,7 @@ import (
 	"strconv"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 func main() {
@@ -19,15 +20,17 @@ func main() {
 	x, err := strconv.Atoi(flag.Arg(0))
 	if err != nil {
 		log.Println(x, " не цифра")
+		log.Fatal(err)
 	}
 
 	y, err := strconv.Atoi(flag.Arg(1))
 	if err != nil {
 		log.Println(y, " не цифра")
+		log.Fatal(err)
 	}
 
 	// подключаемся к серверу gRPC
-	conn, err := grpc.Dial(":8080", grpc.WithInsecure())
+	conn, err := grpc.NewClient(":8080", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -43,5 +46,4 @@ func main() {
 
 	log.Println(res.GetResult())
 	log.Println(res.Result)
-
 }
