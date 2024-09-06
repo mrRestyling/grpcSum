@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "proto/createdProto";
+
+package myGRPC;
+
+
+service Adder {
+    rpc SendMessage (AddRequest) returns (AddResponse) {}
+}
+
+
+message AddRequest {
+    int64 x = 1;
+    int64 y = 2;
+}
+
+message AddResponse {
+    int64 result = 1;
+}
+
+
+
